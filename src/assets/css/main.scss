@@ -1,0 +1,38 @@
+.login-box {
+    width: 500px;
+    height: 300px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    color: #59595a;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    border-radius: 25px 25px 25px 25px;
+}
+.login-form-box{
+    position: absolute;
+    margin: 0 auto;
+    width: 80%;
+    left: 10%;
+    top: 60px;
+}
+.main-box {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-color: #515e72;
+    background-image: url(../img/login_bg.png);
+    background-size: 100% 100%;
+}
+.head-box {
+    font-size: 42px;
+    line-height: 140px;
+    height: 140px;
+    color: #4B94DF;
+    width: 100%;
+}
+.logo {
+    width: 80px;
+    padding: 10px;
+}
