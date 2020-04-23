@@ -17,9 +17,9 @@
                     v-model.number="ruleForm.username" placeholder="请输入用户名">
           </el-input>
         </el-form-item>
-        <el-form-item prop="pass">
+        <el-form-item prop="password">
           <el-input size="large" prefix-icon="el-icon-lock" type="password"
-                    v-model="ruleForm.pass" placeholder="请输入用户名" autocomplete="off">
+                    v-model="ruleForm.password" placeholder="请输入用户名" autocomplete="off">
           </el-input>
         </el-form-item>
         <el-form-item>
@@ -30,10 +30,11 @@
   </div>
 </template>
 <script>
+import { loginApi } from '../../request/login'
 export default {
   components: {},
   data() {
-    var checkAge = (rule, value, callback) => {
+    var checkName = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("用户名不能为空"));
       }
@@ -47,12 +48,12 @@ export default {
     };
     return {
       ruleForm: {
-        pass: "",
-        username: ""
+        password: "123456",
+        username: "admin"
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        username: [{ validator: checkAge, trigger: "blur" }]
+        password: [{ validator: validatePass, trigger: "blur" }],
+        username: [{ validator: checkName, trigger: "blur" }]
       }
     };
   },
@@ -60,14 +61,14 @@ export default {
   watch: {},
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
+      const self = this;
+      let result = loginApi(self.ruleForm);
+      result.then(res => {
+        if(res.data.resultCode===200) {
+            self.$router.push('/main')
         }
-      });
+        console.log(res, 'loginApi')
+      })
     },
   },
   created() {},
